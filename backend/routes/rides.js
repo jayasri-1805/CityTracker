@@ -4,11 +4,10 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 
 const router = express.Router();
 
-// ✅ Create a ride
+// Book a ride
 router.post("/book", async (req, res) => {
   try {
     const { userId, pickup, destination } = req.body;
-
     if (!userId || !pickup || !destination) {
       return res.status(400).json({ error: "Missing fields" });
     }
@@ -28,7 +27,7 @@ router.post("/book", async (req, res) => {
   }
 });
 
-// ✅ Get all rides
+// Get all rides
 router.get("/", async (req, res) => {
   try {
     const snapshot = await getDocs(collection(db, "rides"));
